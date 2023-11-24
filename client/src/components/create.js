@@ -16,6 +16,7 @@ export default function Create() {
   // This function will handle the submission.
  async function onSubmit(e) {
    e.preventDefault();
+   console.log("Submit button clicked");
     // When a post request is sent to the create url, we'll add a new record to the database.
    const newPerson = { ...form };
     await fetch("http://localhost:5000/record/add", {
@@ -27,10 +28,13 @@ export default function Create() {
    })
    .catch(error => {
      window.alert(error);
+     console.log("This is an error section");
      return;
    });
     setForm({ name: "", position: "", level: "" });
+    console.log("Before navigating to /");
    navigate("/");
+   console.log("After navigating to /");
  }
   // This following section will display the form that takes the input from the user.
  return (
