@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Card from '@mui/material/Card';
+import { CardContent, CardHeader, Typography, Grid, Box, Paper } from "@mui/material";
 
 const Record = (props) => (
  <tr>
@@ -69,21 +71,55 @@ export default function RecordList() {
 
  // This following section will display the table with the records of individuals.
  return (
-   <div>
-     <h3>Client List</h3>
-     <table className="table table-striped" style={{ marginTop: 20 }}>
-       <thead>
-         <tr>
-           <th>Name</th>
-           <th>Email</th>
-           <th>Website</th>
-           <th>Business ID</th>
-           <th>Address</th>
-           <th>Action</th>
-         </tr>
-       </thead>
-       <tbody>{recordList()}</tbody>
-     </table>
-   </div>
- );
+  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Paper>
+      <Grid container spacing={3} justifyContent="center">
+        {records.map((record) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={record._id} sx={{ margin: '10px' }}>
+            <Card
+              sx={{
+                width: '40vh',
+                height: 'auto',
+                backgroundColor: '#f8f7ff',
+              }}
+            >
+              <CardHeader title={record.name} />
+              <CardContent>
+                <Typography>{record.email}</Typography>
+                <Typography>{record.website}</Typography>
+                <Typography>{record.businessID}</Typography>
+                <Typography>{record.clientAddress}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Paper>
+  </Box>
+);
 }
+
+/*
+    <Card>
+      <CardContent>
+        <Typography variant="h4">
+          Client List
+        </Typography>
+        <Typography>
+        <table className="table table-striped" style={{ marginTop: 20 }}>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Website</th>
+          <th>Business ID</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>{recordList()}</tbody>
+    </table>
+        </Typography>
+      </CardContent>  
+    </Card>
+*/
