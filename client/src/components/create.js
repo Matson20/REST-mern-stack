@@ -3,8 +3,9 @@ import { useNavigate } from "react-router";
 export default function Create() {
  const [form, setForm] = useState({
    name: "",
-   position: "",
-   level: "",
+   email: "",
+   website: "",
+   businessID: ""
  });
  const navigate = useNavigate();
   // These methods will update the state properties.
@@ -31,10 +32,8 @@ export default function Create() {
      console.log("This is an error section");
      return;
    });
-    setForm({ name: "", position: "", level: "" });
-    console.log("Before navigating to /");
+    setForm({ name: "", email: "", website: "", businessID: "" });
    navigate("/");
-   console.log("After navigating to /");
  }
   // This following section will display the form that takes the input from the user.
  return (
@@ -52,57 +51,39 @@ export default function Create() {
          />
        </div>
        <div className="form-group">
-         <label htmlFor="position">Position</label>
+         <label htmlFor="email">Email</label>
          <input
            type="text"
            className="form-control"
            id="position"
-           value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           value={form.email}
+           onChange={(e) => updateForm({ email: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionIntern"
-             value="Intern"
-             checked={form.level === "Intern"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionJunior"
-             value="Junior"
-             checked={form.level === "Junior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionSenior"
-             value="Senior"
-             checked={form.level === "Senior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-         </div>
+         <label htmlFor="website">Website</label>
+         <input
+           type="text"
+           className="form-control"
+           id="position"
+           value={form.website}
+           onChange={(e) => updateForm({ website: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         <label htmlFor="position">Business ID</label>
+         <input
+           type="text"
+           className="form-control"
+           id="position"
+           value={form.businessID}
+           onChange={(e) => updateForm({ businessID: e.target.value })}
+         />
        </div>
        <div className="form-group">
          <input
            type="submit"
-           value="Create person"
+           value="Create client"
            className="btn btn-primary"
          />
        </div>

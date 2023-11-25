@@ -41,10 +41,12 @@ recordRoutes.route("/record/add").post(async function (req, res) {
     const db_connect = await dbo.getDb();
     const myobj = {
       name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
+      email: req.body.email,
+      website: req.body.website,
+      businessID: req.body.businessID
     };
     const result = await db_connect.collection("records").insertOne(myobj);
+    console.log("1 document created");
     res.json(result);
   } catch (err) {
     throw err;
@@ -59,8 +61,9 @@ recordRoutes.route("/record/:id").patch(async function (req, res) {
     const newvalues = {
       $set: {
         name: req.body.name,
-        position: req.body.position,
-        level: req.body.level,
+        email: req.body.email,
+        website: req.body.website,
+        businessID: req.body.businessID
       },
     };
     const result = await db_connect.collection("records").updateOne(myquery, newvalues);
