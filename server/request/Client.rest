@@ -1,0 +1,8 @@
+// This page is for testing when fetching data
+
+### Get all
+GET http://localhost:5000/record/
+
+@Id=6561d94d2d91ed2d0e4d58df
+### Get on by id
+GET http://localhost:5000/record/{{Id}}
