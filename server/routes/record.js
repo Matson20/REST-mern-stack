@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require("axios")
  
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -45,11 +46,35 @@ recordRoutes.route("/record/add").post(async function (req, res) {
       website: req.body.website,
       businessID: req.body.businessID
     };
+
+    // If businessID is inserted, make external API call
+    if (myobj.businessID != null) {
+      const externalApiUrl = `http://avoindata.prh.fi/opendata/tr/v1/${myobj.businessID}`;
+      const externalApiResponse = await axios.get(externalApiUrl);
+
+      // Debugging
+      console.log('External API Response:', externalApiResponse.data);
+
+    // Check if the expected structure exists in the API response
+    if (externalApiResponse.data.results && externalApiResponse.data.results[0]) {
+      const clientAddress = externalApiResponse.data.results[0].addresses[0].street || '';
+
+      // Debugging
+      console.log('Client Address:', clientAddress);
+
+      myobj.clientAddress = clientAddress;
+    } else {
+      console.error('Unexpected response structure from the external API.');
+    }
+  }
+    
+
     const result = await db_connect.collection("records").insertOne(myobj);
     console.log("1 document created");
     res.json(result);
   } catch (err) {
-    throw err;
+    console.error('Error creating document:', err);
+    res.status(500).send('Internal Server Error');
   }
 });
  

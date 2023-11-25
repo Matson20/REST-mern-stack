@@ -3,6 +3,28 @@
 ### Get all
 GET http://localhost:5000/record/
 
-@Id=6561d94d2d91ed2d0e4d58df
+@Id=65620d0156eca3c0fada38a9
 ### Get on by id
 GET http://localhost:5000/record/{{Id}}
+
+### Create new Client with null Business ID
+POST http://localhost:5000/record/add
+Content-Type: application/json
+
+{
+    "name": "example Alma2",
+    "email": "example@example.com",
+    "website": "www.example.com",
+    "businessID": null
+}
+
+### Create new Client WITH Business ID
+POST http://localhost:5000/record/add
+Content-Type: application/json
+
+{
+    "name": "example Alma3",
+    "email": "example@example.com",
+    "website": "www.example.com",
+    "businessID": "1944757-4"
+}
