@@ -68,7 +68,6 @@ recordRoutes.route("/record/add").post(async function (req, res) {
     }
   }
     
-
     const result = await db_connect.collection("records").insertOne(myobj);
     console.log("1 document created");
     res.json(result);

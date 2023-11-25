@@ -23,7 +23,7 @@ POST http://localhost:5000/record/add
 Content-Type: application/json
 
 {
-    "name": "example Alma3",
+    "name": "example Alma4",
     "email": "example@example.com",
     "website": "www.example.com",
     "businessID": "1944757-4"
