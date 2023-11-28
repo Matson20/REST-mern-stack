@@ -64,6 +64,41 @@ app.post('/login', async (req, res) => {
   res.json({ token });
 });
 
+/*
+// THIS IS ROUTE FOR SIGNUP
+// Signup route
+app.post('/signup', async (req, res) => {
+  const { username, password, role } = req.body;
+
+  // Check if the username is already taken
+  if (users.find((u) => u.username === username)) {
+    return res.status(400).json({ error: 'Username is already taken.' });
+  }
+
+  // Hash the password before storing it
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // Create a new user object (replace with actual database insertion)
+  const newUser = {
+    id: users.length + 1,
+    username,
+    password: hashedPassword,
+    role: role || 'user', // Default role is 'user'
+  };
+
+  // Add the user to the mock database
+  users.push(newUser);
+
+  // Generate a JWT token
+  const token = jwt.sign({ id: newUser.id, username: newUser.username, role: newUser.role }, process.env.JWT_SECRET, {
+    expiresIn: '1h', // Token expiration time
+  });
+
+  // Send the token in the response
+  res.json({ token });
+});
+*/
+
 // Protected route example
 app.get('/protected', authenticateToken, (req, res) => {
   res.json({ message: 'This is a protected route!', user: req.user });

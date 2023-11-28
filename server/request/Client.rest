@@ -18,8 +18,10 @@ Content-Type: application/json
     "businessID": null
 }
 
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJleGFtcGxlQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDExNzg0MTcsImV4cCI6MTcwMTE4MjAxN30.4o_eaRGvX72tkehBEiEs5RbyGnkwskI9JseicTFXgHk
 ### Create new Client WITH Business ID
 POST http://localhost:5000/record/add
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -37,3 +39,8 @@ Content-Type: application/json
   "username": "exampleAdmin",
   "password": "admin"
 }
+
+### Protected test
+GET http://localhost:5000/protected
+Authorization: Bearer {{token}}
+Content-Type: application/json
