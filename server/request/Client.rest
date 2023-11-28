@@ -3,7 +3,7 @@
 ### Get all
 GET http://localhost:5000/record/
 
-@Id=65620d0156eca3c0fada38a9
+@Id=6561d94d2d91ed2d0e4d58df
 ### Get on by id
 GET http://localhost:5000/record/{{Id}}
 
@@ -23,8 +23,17 @@ POST http://localhost:5000/record/add
 Content-Type: application/json
 
 {
-    "name": "example Alma4",
+    "name": "example Alma9",
     "email": "example@example.com",
     "website": "www.example.com",
     "businessID": "1944757-4"
+}
+
+### Login test
+POST http://localhost:5000/Login
+Content-Type: application/json
+
+{
+  "username": "exampleAdmin",
+  "password": "admin"
 }

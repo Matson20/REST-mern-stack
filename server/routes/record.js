@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios")
+const { authenticateToken, authorize } = require('../middleware/authMiddleware');
  
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -11,7 +12,6 @@ const dbo = require("../db/conn");
  
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
- 
  
 // This section will help you get a list of all the records.
 recordRoutes.route("/record").get(async function (req, res) {
@@ -37,7 +37,7 @@ recordRoutes.route("/record/:id").get(async function (req, res) {
 });
  
 // This section will help you create a new record.
-recordRoutes.route("/record/add").post(async function (req, res) {
+recordRoutes.route("/record/add").post(authenticateToken, async function (req, res) {
   try {
     const db_connect = await dbo.getDb();
     const myobj = {
