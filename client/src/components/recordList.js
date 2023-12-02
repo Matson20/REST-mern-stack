@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from '@mui/material/Card';
-import { CardContent, CardHeader, Typography, Grid, Box, Paper } from "@mui/material";
+import { CardContent, CardHeader, Typography, Grid, Box, Paper, Button } from "@mui/material";
 
 const Record = (props) => (
  <tr>
@@ -84,11 +84,19 @@ export default function RecordList() {
               }}
             >
               <CardHeader title={record.name} />
+              <Button 
+                class="btn btn-link"
+                variant='contained'
+                size="small"
+                onClick={()=>deleteRecord(record._id)}>
+                Delete
+              </Button> |
+              <Link className="btn btn-link" to={`/edit/${record._id}`}>Edit</Link> 
               <CardContent>
-                <Typography>{record.email}</Typography>
-                <Typography>{record.website}</Typography>
-                <Typography>{record.businessID}</Typography>
-                <Typography>{record.clientAddress}</Typography>
+                <Typography><u>Email:</u><br/> {record.email}</Typography>
+                <Typography><u>Website:</u><br/>  {record.website}</Typography>
+                <Typography><u>Business ID:</u><br/>  {record.businessID}</Typography>
+                <Typography><u>Address:</u><br/>  {record.clientAddress}</Typography>
               </CardContent>
             </Card>
           </Grid>
