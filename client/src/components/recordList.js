@@ -43,7 +43,7 @@ export default function RecordList() {
     <Paper>
       <Grid container spacing={3} justifyContent="center">
         {records.map((record) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={record._id} sx={{ margin: '10px' }}>
+          <Grid item xs={12} sm={12} md={12} lg={12} key={record._id} sx={{ margin: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Card
               sx={{
                 width: '40vh',

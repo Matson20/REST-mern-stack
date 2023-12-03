@@ -21,7 +21,3 @@ cd mern/client
 npm install
 npm start
 ```
-
-## Disclaimer
-
-This is personal project for studying how to build small application using MERN stack.
