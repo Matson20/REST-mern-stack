@@ -106,28 +106,3 @@ export default function RecordList() {
   </Box>
 );
 }
-
-/*
-    <Card>
-      <CardContent>
-        <Typography variant="h4">
-          Client List
-        </Typography>
-        <Typography>
-        <table className="table table-striped" style={{ marginTop: 20 }}>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Website</th>
-          <th>Business ID</th>
-          <th>Address</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>{recordList()}</tbody>
-    </table>
-        </Typography>
-      </CardContent>  
-    </Card>
-*/

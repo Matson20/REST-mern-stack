@@ -37,9 +37,12 @@ recordRoutes.route("/record/:id").get(async function (req, res) {
 });
  
 // This section will help you create a new record.
-recordRoutes.route("/record/add").post(authenticateToken, async function (req, res) {
+recordRoutes.route("/record/add").post(authorize('admin'),authenticateToken, async function (req, res) {
   try {
     const db_connect = await dbo.getDb();
+
+    const authToken = req.headers.authorization;
+
     const myobj = {
       name: req.body.name,
       email: req.body.email,
@@ -48,9 +51,13 @@ recordRoutes.route("/record/add").post(authenticateToken, async function (req, r
     };
 
     // If businessID is inserted, make external API call
-    if (myobj.businessID != null) {
+    if (myobj.businessID != null && authToken) {
       const externalApiUrl = `http://avoindata.prh.fi/opendata/tr/v1/${myobj.businessID}`;
-      const externalApiResponse = await axios.get(externalApiUrl);
+      const externalApiResponse = await axios.get(externalApiUrl, {
+        headers: {
+          Authorization: authToken
+        }
+      });
 
       // Debugging
       console.log('External API Response:', externalApiResponse.data);
@@ -58,9 +65,6 @@ recordRoutes.route("/record/add").post(authenticateToken, async function (req, r
     // Check if the expected structure exists in the API response
     if (externalApiResponse.data.results && externalApiResponse.data.results[0]) {
       const clientAddress = externalApiResponse.data.results[0].addresses[0].street || '';
-
-      // Debugging
-      console.log('Client Address:', clientAddress);
 
       myobj.clientAddress = clientAddress;
     } else {

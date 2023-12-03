@@ -7,9 +7,11 @@ GET http://localhost:5000/record/
 ### Get on by id
 GET http://localhost:5000/record/{{Id}}
 
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJleGFtcGxlQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDE1ODkxODcsImV4cCI6MTcwMTU5Mjc4N30.svUtsmLso6zkr3rCFYPd6jWURHl6Mx0MUp68vO1Kaog
 ### Create new Client with null Business ID
 POST http://localhost:5000/record/add
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "example Alma2",
@@ -18,7 +20,7 @@ Content-Type: application/json
     "businessID": null
 }
 
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJleGFtcGxlQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDExNzg0MTcsImV4cCI6MTcwMTE4MjAxN30.4o_eaRGvX72tkehBEiEs5RbyGnkwskI9JseicTFXgHk
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJleGFtcGxlQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDE1ODkxODcsImV4cCI6MTcwMTU5Mjc4N30.svUtsmLso6zkr3rCFYPd6jWURHl6Mx0MUp68vO1Kaog
 ### Create new Client WITH Business ID
 POST http://localhost:5000/record/add
 Authorization: Bearer {{token}}
@@ -39,6 +41,13 @@ Content-Type: application/json
   "username": "exampleAdmin",
   "password": "admin"
 }
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJleGFtcGxlQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDE1ODkxODcsImV4cCI6MTcwMTU5Mjc4N30.svUtsmLso6zkr3rCFYPd6jWURHl6Mx0MUp68vO1Kaog
+### Get username
+GET http://localhost:5000/profile
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 
 ### Protected test
 GET http://localhost:5000/protected

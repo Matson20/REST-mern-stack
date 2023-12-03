@@ -37,6 +37,22 @@ const users = [
   },
 ];
 
+// Profile endpoint that requires authentication
+app.get('/profile', authenticateToken, (req, res) => {
+  // req.user contains user information from the token
+  const userId = req.user.id;
+
+  // Find the user by ID (replace with your database query)
+  const user = users.find((u) => u.id === userId);
+
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  // Return user information
+  res.json({ user });
+});
+
 // Login route
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
@@ -61,7 +77,7 @@ app.post('/login', async (req, res) => {
   });
 
   // Send the token in the response
-  res.json({ token });
+  res.json({ token, user });
 });
 
 /*

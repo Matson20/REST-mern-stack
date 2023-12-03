@@ -12,12 +12,15 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/login', { username, password });
       const token = response.data.token;
-
-      // Store the token in local storage
+      const user = response.data.user;
+  
+      // Store the token and username in local storage
       localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      console.log(token);
+      console.log(user.username);
+      console.log(user.role);
 
-      // Optionally, you can redirect the user to another page
-      // history.push('/dashboard');
       navigate('/')
     } catch (error) {
       console.error('Login failed:', error);
