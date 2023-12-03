@@ -3,25 +3,6 @@ import { Link } from "react-router-dom";
 import Card from '@mui/material/Card';
 import { CardContent, CardHeader, Typography, Grid, Box, Paper, Button } from "@mui/material";
 
-const Record = (props) => (
- <tr>
-   <td>{props.record.name}</td>
-   <td>{props.record.email}</td>
-   <td>{props.record.website}</td>
-   <td>{props.record.businessID}</td>
-   <td>{props.record.clientAddress}</td>
-   <td>
-     <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
-     <button className="btn btn-link"
-       onClick={() => {
-         props.deleteRecord(props.record._id);
-       }}
-     >
-       Delete
-     </button>
-   </td>
- </tr>
-);
 
 export default function RecordList() {
  const [records, setRecords] = useState([]);
@@ -54,19 +35,6 @@ export default function RecordList() {
 
    const newRecords = records.filter((el) => el._id !== id);
    setRecords(newRecords);
- }
-
- // This method will map out the records on the table
- function recordList() {
-   return records.map((record) => {
-     return (
-       <Record
-         record={record}
-         deleteRecord={() => deleteRecord(record._id)}
-         key={record._id}
-       />
-     );
-   });
  }
 
  // This following section will display the table with the records of individuals.
